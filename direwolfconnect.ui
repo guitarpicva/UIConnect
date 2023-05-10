@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DirewolfConnect</class>
+ <widget class="QMainWindow" name="DirewolfConnect">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>759</width>
+    <height>601</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>UI Connect</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QPushButton {background-color:#e5e5e5;border:1px solid gray;border-radius:2px;padding:3px 3px;}
+QPushButton::pressed {background-color:#c4e3ed;}
+QPushButton:checked { background-color:#c4e3ed; }
+QWidget{background-color:#202020;color:lightblue;}
+QComboBox{border: 1px solid gray;border-radius:2px;}
+QSpinBox{border: 1px solid gray;border-radius:2px;}
+QLabel{border: none;border-radius:2px;}
+QLineEdit{border: 1px solid gray;border-radius:2px;}
+QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="4" column="3">
+     <widget class="QPushButton" name="clearTextButton">
+      <property name="toolTip">
+       <string>Clear the receive text area.</string>
+      </property>
+      <property name="text">
+       <string>Clear Text</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="3">
+     <widget class="QPushButton" name="killTxButton">
+      <property name="text">
+       <string>KILL TX</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" rowspan="4" colspan="3">
+     <widget class="QPlainTextEdit" name="plainTextEdit_2">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>110</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="tabChangesFocus">
+       <bool>true</bool>
+      </property>
+      <property name="plainText">
+       <string>!3657.92N/07741.14W#HF Test Station AB4MW</string>
+      </property>
+      <property name="placeholderText">
+       <string>Enter text to send and use the &quot;Send Now&quot; button to send to the addressing above. (MAX 240 chars)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="4">
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {border:1px solid gray;}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="1" column="4">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>KISS TCP Port</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>KISS Serial Port</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="6">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>KISS Serial Baud</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QSpinBox" name="serialPortTimeoutSpinBox">
+         <property name="toolTip">
+          <string>Time in milliseconds to wait for the KISS port to be &quot;done&quot; before evaluating the data.</string>
+         </property>
+         <property name="minimum">
+          <number>20</number>
+         </property>
+         <property name="maximum">
+          <number>150</number>
+         </property>
+         <property name="value">
+          <number>50</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QRadioButton" name="tcpKISSRadioButton">
+         <property name="toolTip">
+          <string>The KISS connection is via a TCP socket (network)</string>
+         </property>
+         <property name="text">
+          <string>TCP KISS</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QComboBox" name="direwolfIPComboBox">
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>IPv4 Address or Hostname of the Direwolf TCP KISS modem.</string>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>localhost</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>192.168.0.129</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Data Timeout</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QSpinBox" name="direwolfPortSpinBox">
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>TCP Port number of the Direwolf KISS port.</string>
+         </property>
+         <property name="minimum">
+          <number>1025</number>
+         </property>
+         <property name="maximum">
+          <number>32768</number>
+         </property>
+         <property name="value">
+          <number>8001</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QRadioButton" name="serialKISSRadioButton">
+         <property name="toolTip">
+          <string>The KISS connection is via a serial port.</string>
+         </property>
+         <property name="text">
+          <string>Serial KISS</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>KISS IP Address</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="connectButton">
+         <property name="toolTip">
+          <string>Attempt to re-connect to the device.</string>
+         </property>
+         <property name="text">
+          <string>Re-Connect</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QCheckBox" name="il2pCheckBox">
+         <property name="toolTip">
+          <string>If checked, will send data without any AX.25 framing to the KISS port.</string>
+         </property>
+         <property name="text">
+          <string>No AX.25 (raw)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="saveSettingsButton">
+         <property name="toolTip">
+          <string>Save the settings, reload the settings and re-connect to the device.</string>
+         </property>
+         <property name="text">
+          <string>SaveSettings</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="QComboBox" name="modemSerialComboBox">
+         <property name="minimumSize">
+          <size>
+           <width>65</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Serial port that the hardware modem is connected to.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="7">
+        <widget class="QComboBox" name="modemBaudComboBox">
+         <property name="toolTip">
+          <string>Baud rate for the hardware modem that is serially connected.</string>
+         </property>
+         <property name="currentText">
+          <string>1200</string>
+         </property>
+         <property name="maxCount">
+          <number>16</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>1200</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2400</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4800</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9600</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>19200</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>38400</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>57600</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>115200</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>230400</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>829440</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QCheckBox" name="useSAMECheckBox">
+         <property name="toolTip">
+          <string>If checked, add SAME preamble to transmission text</string>
+         </property>
+         <property name="text">
+          <string>SAME</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="4">
+     <widget class="QPlainTextEdit" name="plainTextEdit">
+      <property name="font">
+       <font>
+        <family>Courier New</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="tabChangesFocus">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="4">
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {border:1px solid gray;}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="myCallsignButton">
+         <property name="toolTip">
+          <string>Click this to remove the selected call sign from the My Callsign list.</string>
+         </property>
+         <property name="text">
+          <string>My Callsign</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="sourceCallSignComboBox">
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="destStationButton">
+         <property name="toolTip">
+          <string>Click this to remove the selected call sign from the Dest. Station list.</string>
+         </property>
+         <property name="text">
+          <string>Dest. Station</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="destCallSignComboBox">
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>APDW17</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Repeater One</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="digiOneComboBox">
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>APRS wide value or Station Call sign for first AX.25 digipeater (AX.25 only)</string>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>WIDE1-1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Repeater Two</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="digiTwoComboBox">
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>APRS wide value or Station Call sign for second AX.25 digipeater (AX.25 only)</string>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>WIDE2-2</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <widget class="QPushButton" name="sendNowButton">
+      <property name="minimumSize">
+       <size>
+        <width>90</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>90</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>Send the data in the lower text area as directed.</string>
+      </property>
+      <property name="text">
+       <string>Send Now</string>
+      </property>
+      <property name="shortcut">
+       <string>Ctrl+Return</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="3">
+     <widget class="QPushButton" name="pingButton">
+      <property name="toolTip">
+       <string>Send a &quot;///PING/// DE MYCALL&quot; message to the other station, who should respond with &quot;///PONG/// DE OTHERCALL&quot;</string>
+      </property>
+      <property name="text">
+       <string>PING</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>759</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionE_xit"/>
+    <addaction name="action_Preferences"/>
+   </widget>
+   <widget class="QMenu" name="menu_Actions">
+    <property name="title">
+     <string>&amp;Actions</string>
+    </property>
+    <addaction name="actionSend_Numbered_Group"/>
+    <addaction name="actionSend_Text_Line_By_Line"/>
+    <addaction name="actionSet_My_Position"/>
+    <addaction name="actionTEST"/>
+   </widget>
+   <widget class="QMenu" name="menu_KISS_Commands">
+    <property name="title">
+     <string>&amp;KISS Commands</string>
+    </property>
+    <addaction name="actionTXDELAY"/>
+    <addaction name="actionP_Persistence"/>
+    <addaction name="actionSlot_Time"/>
+    <addaction name="actionTX_Tail"/>
+    <addaction name="actionFull_Duplex"/>
+    <addaction name="actionSet_Hardware"/>
+    <addaction name="actionEnter_KISS_Mode"/>
+    <addaction name="actionExit_KISS_Mode"/>
+    <addaction name="actionNino_TNC_GETALL"/>
+    <addaction name="actionGet_Nino_TNC_Serial"/>
+    <addaction name="actionSet_Nino_TNC_Serial"/>
+    <addaction name="actionGet_Nino_TNC_Firmware_Version"/>
+    <addaction name="actionDirewolf_TNC"/>
+    <addaction name="actionTest_ACKMODE"/>
+   </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionSend_Numbere"/>
+    <addaction name="actionSend_Line_By_Line"/>
+    <addaction name="actionNo_AX_25_raw"/>
+    <addaction name="actionSubstitution_Text"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menu_Actions"/>
+   <addaction name="menu_KISS_Commands"/>
+   <addaction name="menu_Help"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionE_xit">
+   <property name="text">
+    <string>E&amp;xit</string>
+   </property>
+  </action>
+  <action name="actionSend_Numbered_Group">
+   <property name="text">
+    <string>Send &amp;Numbered Transmissions</string>
+   </property>
+   <property name="toolTip">
+    <string>Send the same transmission with tx number one after the other with about a 2 sec pause in between.</string>
+   </property>
+  </action>
+  <action name="actionTXDELAY">
+   <property name="text">
+    <string>TX Delay</string>
+   </property>
+   <property name="toolTip">
+    <string>1 - TX Delay</string>
+   </property>
+  </action>
+  <action name="actionP_Persistence">
+   <property name="text">
+    <string>Persistence</string>
+   </property>
+  </action>
+  <action name="actionSlot_Time">
+   <property name="text">
+    <string>Slot Time</string>
+   </property>
+  </action>
+  <action name="actionTX_Tail">
+   <property name="text">
+    <string>TX Tail</string>
+   </property>
+  </action>
+  <action name="actionFull_Duplex">
+   <property name="text">
+    <string>Full Duplex</string>
+   </property>
+  </action>
+  <action name="actionSet_Hardware">
+   <property name="text">
+    <string>Set Hardware</string>
+   </property>
+  </action>
+  <action name="actionExit_KISS_Mode">
+   <property name="text">
+    <string>Exit KISS Mode</string>
+   </property>
+  </action>
+  <action name="actionNino_TNC_GETALL">
+   <property name="text">
+    <string>Nino TNC GETALL</string>
+   </property>
+  </action>
+  <action name="actionSend_Text_Line_By_Line">
+   <property name="text">
+    <string>Send Text Line By Line</string>
+   </property>
+  </action>
+  <action name="actionSend_Numbere">
+   <property name="text">
+    <string>Send Numbered</string>
+   </property>
+  </action>
+  <action name="actionSend_Line_By_Line">
+   <property name="text">
+    <string>Send Line By Line</string>
+   </property>
+  </action>
+  <action name="actionNo_AX_25_raw">
+   <property name="text">
+    <string>No AX.25 (raw)</string>
+   </property>
+  </action>
+  <action name="actionDirewolf_TNC">
+   <property name="text">
+    <string>Direwolf TNC Version</string>
+   </property>
+  </action>
+  <action name="actionSet_My_Position">
+   <property name="text">
+    <string>Set My Position</string>
+   </property>
+   <property name="toolTip">
+    <string>Set My Position information</string>
+   </property>
+  </action>
+  <action name="actionSubstitution_Text">
+   <property name="text">
+    <string>Substitution Text</string>
+   </property>
+  </action>
+  <action name="actionSet_OTA_Baud_Rate">
+   <property name="text">
+    <string>Set OTA Baud Rate</string>
+   </property>
+  </action>
+  <action name="action_Preferences">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Preferences</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionTEST">
+   <property name="text">
+    <string>TEST</string>
+   </property>
+  </action>
+  <action name="actionSet_Nino_TNC_Serial">
+   <property name="text">
+    <string>Set Nino TNC Serial</string>
+   </property>
+  </action>
+  <action name="actionGet_Nino_TNC_Firmware_Version">
+   <property name="text">
+    <string>Get Nino TNC Firmware Version</string>
+   </property>
+  </action>
+  <action name="actionGo_to_1200_bd_AX_25">
+   <property name="text">
+    <string>Go to 1200 bd AX.25</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to 1200 bd AX.25</string>
+   </property>
+  </action>
+  <action name="actionTest_ACKMODE">
+   <property name="text">
+    <string>Test ACKMODE returns &quot;AB&quot;</string>
+   </property>
+  </action>
+  <action name="actionGet_Nino_TNC_Serial">
+   <property name="text">
+    <string>Get Nino TNC Serial</string>
+   </property>
+  </action>
+  <action name="actionEnter_KISS_Mode">
+   <property name="text">
+    <string>Enter SCS KISS Mode</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
