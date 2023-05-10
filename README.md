@@ -11,7 +11,7 @@ and there may be others...report on discord as you find needs please.
 
 Other Linuxes you have to figure out the package names.
 
-Genrally, Linux compilation is:
+Generally, Linux compilation is:
 ````
 mkdir ~/src
 cd src
