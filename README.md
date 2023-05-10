@@ -10,7 +10,7 @@ and there may be others...report on discord as you find needs please.
 Other Linuxes you have to figure out the package names.
 
 Genrally, Linux compilation is:
-
+````
 mkdir src
 cd src
 git clone https://github.com/guitarpicva/UIConnect.git
@@ -19,16 +19,17 @@ mkdir build
 cd build
 qmake ..
 make 
-
+````
 Executable is "UIConnect"
 
 Copy to a convenient folder and run it from the command line, or create a 
 system shortcut if you like.
+````
 cd ~
 mkdir UIConnect
 cp src/UIConnect/build/UIConnect .
 ./UIConnect
-
+````
 If all goes well, it should run!  Use the File menu to show the configuration items.
 They are pretty obvious.
 
