@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>759</width>
+    <width>780</width>
     <height>601</height>
    </rect>
   </property>
@@ -234,6 +234,9 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
          </property>
          <property name="toolTip">
           <string>Serial port that the hardware modem is connected to.</string>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -488,7 +491,7 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>759</width>
+     <width>780</width>
      <height>23</height>
     </rect>
    </property>
