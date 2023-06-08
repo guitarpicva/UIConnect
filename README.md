@@ -29,9 +29,10 @@ system shortcut if you like.
 ````
 cd ~
 mkdir UIConnect
+cd UIConnect
 cp src/UIConnect/build/UIConnect .
 cd ~/UIConnect
-./UIConnect
+./UIConnect &
 ````
 If all goes well, it should run!  Use the File menu to show the configuration items.
 They are pretty obvious for configuration tasks.  Choose serial or tcp KISS connection
