@@ -5,7 +5,7 @@ Linux users should install libraries:
 
 Debian and derivatives:
 ````
-sudo apt install qt5base-dev libqt5serialport5-dev qt5-qmake
+sudo apt install qtbase5-dev libqt5serialport5-dev qt5-qmake
 ````
 and there may be others...report on discord as you find needs please.
 
