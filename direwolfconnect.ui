@@ -499,8 +499,8 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionE_xit"/>
     <addaction name="action_Preferences"/>
+    <addaction name="actionE_xit"/>
    </widget>
    <widget class="QMenu" name="menu_Actions">
     <property name="title">
@@ -509,7 +509,6 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
     <addaction name="actionSend_Numbered_Group"/>
     <addaction name="actionSend_Text_Line_By_Line"/>
     <addaction name="actionSet_My_Position"/>
-    <addaction name="actionTEST"/>
    </widget>
    <widget class="QMenu" name="menu_KISS_Commands">
     <property name="title">

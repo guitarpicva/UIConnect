@@ -863,7 +863,7 @@ void DirewolfConnect::on_pingButton_clicked()
 
 void DirewolfConnect::on_actionTEST_triggered()
 {
-    inBytes = UIKISSUtils::kissWrap("NNX3XA/3/NNX4XA/0/1/0/7:Hello World"); // qos 1 should send an ACK frame for id = 7
+    inBytes = UIKISSUtils::kissWrap("AB4MW/3/AB4MW-T/0/1/0/7:Hello World"); // qos 1 should send an ACK frame for id = 7
     processIncomingData();
     //    inBytes = UIKISSUtils::kissWrap("NNX4XA/6/NNX3XA/0/0/0");
     //    processIncomingData();
@@ -982,6 +982,9 @@ void DirewolfConnect::on_actionSet_My_Position_triggered()
     if (ok) {
         position << latitude;
     }
+    else {
+        return;
+    }
     ok = false;
     const QString longitude
         = QInputDialog::getText(this,
@@ -1003,7 +1006,7 @@ void DirewolfConnect::on_actionSet_My_Position_triggered()
         else {
             setWindowTitle(windowTitle().mid(0, idx) % s_myPosition);
         }
-    }
+    }    
     //qDebug() << "s_myPosition:" << s_myPosition;
 }
 
