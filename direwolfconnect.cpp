@@ -673,14 +673,17 @@ void DirewolfConnect::on_actionFull_Duplex_triggered()
 void DirewolfConnect::on_actionSet_Hardware_triggered()
 {
     bool ok = false;
-    const QString val = QInputDialog::getText(this,
-                                              "Set Custom Hardware Value",
-                                              "Enter the value for Custom Hardware setting. (def. 0)",
-                                              QLineEdit::Normal,
-                                              "",
-                                              &ok);
+//    const QString val = QInputDialog::getText(this,
+//                                              "Set Custom Hardware Value",
+//                                              "Enter the value for Custom Hardware setting. (def. 0)",
+//                                              QLineEdit::Normal,
+//                                              "",
+//                                              &ok);
+    const int val
+        = QInputDialog::getInt(this, "Set TX Delay Value", "Set the HW command integer.", 0, 0, 255, 1, &ok);
     if (ok) {
-        const QByteArray cmd = UIKISSUtils::kissWrapCommand(val.toLatin1(), 6);
+        //const QByteArray cmd = UIKISSUtils::kissWrapCommand(val.toLatin1(), 6);
+        const QByteArray cmd = UIKISSUtils::kissWrapCommand(QByteArray::fromHex(QString::number(val).toLatin1()), 4);
         //qDebug() << "Command:" << cmd;
         if (dw) {
             dw->write(cmd);
