@@ -683,7 +683,7 @@ void DirewolfConnect::on_actionSet_Hardware_triggered()
         = QInputDialog::getInt(this, "Set TX Delay Value", "Set the HW command integer.", 0, 0, 255, 1, &ok);
     if (ok) {
         //const QByteArray cmd = UIKISSUtils::kissWrapCommand(val.toLatin1(), 6);
-        const QByteArray cmd = UIKISSUtils::kissWrapCommand(QByteArray::fromHex(QString::number(val).toLatin1()), 4);
+        const QByteArray cmd = UIKISSUtils::kissWrapCommand(QByteArray::fromHex(QString::number(val).toLatin1()), 6);
         //qDebug() << "Command:" << cmd;
         if (dw) {
             dw->write(cmd);
