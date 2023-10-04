@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>780</width>
+    <width>788</width>
     <height>601</height>
    </rect>
   </property>
@@ -26,13 +26,148 @@ QLineEdit{border: 1px solid gray;border-radius:2px;}
 QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</string>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="4" column="3">
-     <widget class="QPushButton" name="clearTextButton">
+    <item row="3" column="0" colspan="4">
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {border:1px solid gray;}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="myCallsignButton">
+         <property name="toolTip">
+          <string>Click this to remove the selected call sign from the My Callsign list.</string>
+         </property>
+         <property name="text">
+          <string>My Callsign</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="sourceCallSignComboBox">
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="destStationButton">
+         <property name="toolTip">
+          <string>Click this to remove the selected call sign from the Dest. Station list.</string>
+         </property>
+         <property name="text">
+          <string>Dest. Station</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="destCallSignComboBox">
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>APDW17</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Repeater One</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="digiOneComboBox">
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>APRS wide value or Station Call sign for first AX.25 digipeater (AX.25 only)</string>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>WIDE1-1</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Repeater Two</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="digiTwoComboBox">
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>APRS wide value or Station Call sign for second AX.25 digipeater (AX.25 only)</string>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>WIDE2-2</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <widget class="QPushButton" name="sendNowButton">
+      <property name="minimumSize">
+       <size>
+        <width>90</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>90</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
       <property name="toolTip">
-       <string>Clear the receive text area.</string>
+       <string>Send the data in the lower text area as directed.</string>
       </property>
       <property name="text">
-       <string>Clear Text</string>
+       <string>Send Now</string>
+      </property>
+      <property name="shortcut">
+       <string>Ctrl+Return</string>
       </property>
      </widget>
     </item>
@@ -40,6 +175,16 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
      <widget class="QPushButton" name="killTxButton">
       <property name="text">
        <string>KILL TX</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QPushButton" name="clearTextButton">
+      <property name="toolTip">
+       <string>Clear the receive text area.</string>
+      </property>
+      <property name="text">
+       <string>Clear Text</string>
       </property>
      </widget>
     </item>
@@ -68,7 +213,30 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
       </property>
      </widget>
     </item>
-    <item row="1" column="0" colspan="4">
+    <item row="6" column="3">
+     <widget class="QPushButton" name="pingButton">
+      <property name="toolTip">
+       <string>Send a &quot;///PING/// DE MYCALL&quot; message to the other station, who should respond with &quot;///PONG/// DE OTHERCALL&quot;</string>
+      </property>
+      <property name="text">
+       <string>PING</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="4">
+     <widget class="QPlainTextEdit" name="plainTextEdit">
+      <property name="font">
+       <font>
+        <family>Courier New</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="tabChangesFocus">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0" colspan="4">
      <widget class="QGroupBox" name="groupBox_3">
       <property name="styleSheet">
        <string notr="true">QGroupBox {border:1px solid gray;}</string>
@@ -316,174 +484,6 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
       </layout>
      </widget>
     </item>
-    <item row="0" column="0" colspan="4">
-     <widget class="QPlainTextEdit" name="plainTextEdit">
-      <property name="font">
-       <font>
-        <family>Courier New</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="tabChangesFocus">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0" colspan="4">
-     <widget class="QGroupBox" name="groupBox_2">
-      <property name="styleSheet">
-       <string notr="true">QGroupBox {border:1px solid gray;}</string>
-      </property>
-      <property name="title">
-       <string/>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="myCallsignButton">
-         <property name="toolTip">
-          <string>Click this to remove the selected call sign from the My Callsign list.</string>
-         </property>
-         <property name="text">
-          <string>My Callsign</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="sourceCallSignComboBox">
-         <property name="font">
-          <font>
-           <pointsize>9</pointsize>
-          </font>
-         </property>
-         <property name="editable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="destStationButton">
-         <property name="toolTip">
-          <string>Click this to remove the selected call sign from the Dest. Station list.</string>
-         </property>
-         <property name="text">
-          <string>Dest. Station</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="destCallSignComboBox">
-         <property name="font">
-          <font>
-           <pointsize>9</pointsize>
-          </font>
-         </property>
-         <property name="editable">
-          <bool>true</bool>
-         </property>
-         <item>
-          <property name="text">
-           <string>APDW17</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item alignment="Qt::AlignHCenter">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Repeater One</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="digiOneComboBox">
-         <property name="font">
-          <font>
-           <pointsize>9</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>APRS wide value or Station Call sign for first AX.25 digipeater (AX.25 only)</string>
-         </property>
-         <property name="editable">
-          <bool>true</bool>
-         </property>
-         <item>
-          <property name="text">
-           <string>WIDE1-1</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item alignment="Qt::AlignHCenter">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>Repeater Two</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="digiTwoComboBox">
-         <property name="font">
-          <font>
-           <pointsize>9</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>APRS wide value or Station Call sign for second AX.25 digipeater (AX.25 only)</string>
-         </property>
-         <property name="editable">
-          <bool>true</bool>
-         </property>
-         <item>
-          <property name="text">
-           <string>WIDE2-2</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="5" column="3">
-     <widget class="QPushButton" name="sendNowButton">
-      <property name="minimumSize">
-       <size>
-        <width>90</width>
-        <height>70</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>90</width>
-        <height>70</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>13</pointsize>
-       </font>
-      </property>
-      <property name="toolTip">
-       <string>Send the data in the lower text area as directed.</string>
-      </property>
-      <property name="text">
-       <string>Send Now</string>
-      </property>
-      <property name="shortcut">
-       <string>Ctrl+Return</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="3">
-     <widget class="QPushButton" name="pingButton">
-      <property name="toolTip">
-       <string>Send a &quot;///PING/// DE MYCALL&quot; message to the other station, who should respond with &quot;///PONG/// DE OTHERCALL&quot;</string>
-      </property>
-      <property name="text">
-       <string>PING</string>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -491,8 +491,8 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>780</width>
-     <height>23</height>
+     <width>788</width>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
