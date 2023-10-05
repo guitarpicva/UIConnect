@@ -97,6 +97,12 @@ static std::pair<double, double> ll2aprs(const std::pair<double, double> latlon)
     return std::pair<double, double>(latdeg+latmin, londeg+lonmin);
 }
 
+/**
+ * @brief aprs_pos Create a std::string of aprs formatted position using out-
+ * put of ll2aprs values.
+ * @param latlon - the output of the ll2aprs function
+ * @return std::string containing properly formatted std::string of APRS position
+ */
 static std::string aprs_pos(const std::pair<double, double> latlon) {
     std::string latout, lonout;
     double adj = latlon.first;
