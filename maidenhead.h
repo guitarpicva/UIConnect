@@ -81,7 +81,7 @@ static std::pair<double, double> mh2ll(const std::string mh)
     return std::pair<double, double>(lat, lon);
 }
 
-static std::pair<double, double> ll2ddm(const std::pair<double, double> latlon)
+static std::pair<double, double> ll2aprs(const std::pair<double, double> latlon)
 {
     double latdeg = (int32_t) latlon.first * 100; // move deg 2 digits left
     double latmin = latlon.first - ((int32_t) latlon.first); // only the fractional part

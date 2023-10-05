@@ -1049,7 +1049,6 @@ void DirewolfConnect::on_useSAMECheckBox_stateChanged(int arg1)
     b_useSAME = arg1;
 }
 
-
 void DirewolfConnect::on_actionSet_My_Position_Maidenhead_triggered()
 {
     QStringList position;
@@ -1065,7 +1064,28 @@ void DirewolfConnect::on_actionSet_My_Position_Maidenhead_triggered()
         QPair<double, double> loc = mh2ll(maidenhead.toStdString());
         qDebug()<< maidenhead<<loc;
         setWindowTitle(windowTitle().append(maidenhead));
-        qDebug()<<ll2ddm(loc);
+        QPair<double, double> aprs = ll2aprs(loc);
+        s_aprsLat = QString::number(aprs.first);
+        if(aprs.first > 0) {
+            s_aprsLat += "N";
+        }
+        else {
+            s_aprsLat += "S";
+        }
+        s_aprsLon = QString::number(aprs.second, 'f', 2);
+        if(aprs.second < 0) {
+            s_aprsLon[0] = '0';
+            s_aprsLon.append('W');
+        }
+        else {
+            s_aprsLon.append('E');
+        }
+        while(s_aprsLon.length() < 9) {
+                s_aprsLon.prepend('0');
+            }
+        qDebug()<<"APRS:"<<s_aprsLat<<"/"<<s_aprsLon;
+        statusBar()->showMessage("APRS: " + s_aprsLat + "/" + s_aprsLon);
+
     }
 }
 

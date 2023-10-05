@@ -90,6 +90,8 @@ private:
     QString hostname = "192.168.0.50";
     QStringList lineByLines;
     QString s_myPosition;
+    QString s_aprsLat;
+    QString s_aprsLon;
     int port = 8001;
     int i_serialPortTimeout = 50;
     int i_baudRate = 57600;
