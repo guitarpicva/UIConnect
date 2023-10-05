@@ -147,3 +147,7 @@ static std::string aprs_pos(const std::pair<double, double> latlon) {
 
     return latout.append("/").append(lonout);
 }
+
+static std::string mh2aprs(const std::string maidenhead) {
+    return aprs_pos(ll2aprs(mh2ll(maidenhead)));
+}

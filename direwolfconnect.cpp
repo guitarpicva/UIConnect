@@ -1092,7 +1092,6 @@ void DirewolfConnect::on_actionSet_My_Position_Maidenhead_triggered()
             }
         qDebug()<<"APRS:"<<s_aprsLat<<"/"<<s_aprsLon;
         statusBar()->showMessage("APRS: " + s_aprsLat + "/" + s_aprsLon);
-
     }
 }
 
