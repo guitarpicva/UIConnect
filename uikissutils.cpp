@@ -240,7 +240,7 @@ QByteArray UIKISSUtils::kissUnwrap(const QByteArray in)
     return out;
 }
 
-QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QString digi1, QString digi2, QString text)
+QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QString digi1, QString digi2, QByteArray data)
 {
     /* ax.25 UI frame has 7 chars for dest, 7 chars for source, 7 chars for
     * digi, (7 chars for a second digi) one byte for frame type of UI (03), and one byte for PID (f0)
@@ -429,7 +429,7 @@ QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QSt
     // PID = 0x03, no layer 3
     out.append((uchar) 0x03);
     out.append((uchar) 0xf0);
-    msg = text.toLatin1().mid(0, 256); // limit to 256 bytes
+    msg = data.mid(0, 256); // limit to 256 bytes
     for (int i = 0; i < msg.length(); i++) {
         out.append((uchar) msg[i]);
     }

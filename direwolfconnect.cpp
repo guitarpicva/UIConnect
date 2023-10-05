@@ -495,6 +495,7 @@ void DirewolfConnect::sendMessage(const QByteArray msgtext)
         dws->write(UIKISSUtils::kissWrap(out));
         dws->flush();
     }
+    //qDebug()<<"UI frame:"<<out<<out.toHex();
 }
 
 void DirewolfConnect::on_il2pCheckBox_clicked(bool checked)
