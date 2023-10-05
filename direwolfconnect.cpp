@@ -385,6 +385,9 @@ QString DirewolfConnect::do_textSubstitutions(QString msgtext)
     if (msgtext.contains("{POS}")) {
         msgtext.replace("{POS}", s_myPosition);
     }
+    if (msgtext.contains("{APRSPOS}")) {
+        msgtext.replace("{APRSPOS}", s_aprsLat + "/" + s_aprsLon);
+    }
     if (msgtext.contains("{CS}")) {
         msgtext.replace("{CS}", ui->sourceCallSignComboBox->currentText().trimmed().toUpper());
     }
@@ -810,6 +813,7 @@ void DirewolfConnect::on_actionSubstitution_Text_triggered()
                              "Substitution Text Usage",
                              "When typing text into the send text area,\nany text found with the following values\nwill be "
                              "substituted as follows:\n\n{POS} = position stored with Actions/My Location menu item.\n\n"
+                             "{APRSPOS} = APRS position previously calculated with the Maidenhead utility.\n\n"
                              "{CS} = currently displayed My Call Sign value\n\nExample APRS frame: !{POS}#HF Test Station {CS}");
 }
 
