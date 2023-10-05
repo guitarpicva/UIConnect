@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
-#include <iostream>
+#include <iostream> // only needed for debug
 using namespace  std;
 
 static std::pair<double, double> mh2ll(const std::string mh)
@@ -95,4 +95,49 @@ static std::pair<double, double> ll2aprs(const std::pair<double, double> latlon)
     lonmin *= 60;
     //cout<<londeg<<lonmin<<endl;
     return std::pair<double, double>(latdeg+latmin, londeg+lonmin);
+}
+
+static std::string aprs_pos(const std::pair<double, double> latlon) {
+    std::string latout, lonout;
+    double adj = latlon.first;
+    // latitude
+    if(latlon.first < 0) {
+        adj = abs(adj);
+    }
+    //cout<<"adj:"<<adj<<endl;
+    latout = std::to_string(adj);
+    //cout<<"latout:"<<latout<<endl;
+    if(adj < 1000.0) {
+        latout.insert(0, "0");
+
+    }
+    latout = latout.substr(0, 7);
+    if(latlon.first < 0) {
+        latout.append("S");
+    }
+    else {
+        latout.append("N");
+    }
+    //cout<<"latout:"<<latout<<endl;
+
+    // now longitude
+    if(latlon.second < 0) {
+        adj = abs(latlon.second);
+    }
+    //cout<<"adj:"<<adj<<endl;
+    lonout = std::to_string(adj);
+    //cout<<"lonout:"<<lonout<<endl;
+    if(adj < 10000.0) {
+        lonout.insert(0, "0");
+    }
+    lonout = lonout.substr(0, 8);
+    //cout<<"lonout:"<<lonout<<endl;
+    if(latlon.second < 0) {
+        lonout.append("W");
+    }
+    else {
+        lonout.append("E");
+    }
+
+    return latout.append("/").append(lonout);
 }
