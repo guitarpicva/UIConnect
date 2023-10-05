@@ -15,6 +15,7 @@ SOURCES += \
 
 HEADERS += \
     direwolfconnect.h \
+    maidenhead.h \
     uikissutils.h
 
 FORMS += \

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>788</width>
-    <height>601</height>
+    <height>622</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -509,6 +509,7 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
     <addaction name="actionSend_Numbered_Group"/>
     <addaction name="actionSend_Text_Line_By_Line"/>
     <addaction name="actionSet_My_Position"/>
+    <addaction name="actionSet_My_Position_Maidenhead"/>
    </widget>
    <widget class="QMenu" name="menu_KISS_Commands">
     <property name="title">
@@ -627,10 +628,10 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
   </action>
   <action name="actionSet_My_Position">
    <property name="text">
-    <string>Set My Position</string>
+    <string>Set My Position Lat/Lon</string>
    </property>
    <property name="toolTip">
-    <string>Set My Position information</string>
+    <string>Set My Position information from Latitude and Longitude</string>
    </property>
   </action>
   <action name="actionSubstitution_Text">
@@ -690,6 +691,11 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
   <action name="actionEnter_KISS_Mode">
    <property name="text">
     <string>Enter SCS KISS Mode</string>
+   </property>
+  </action>
+  <action name="actionSet_My_Position_Maidenhead">
+   <property name="text">
+    <string>Set My Position Maidenhead</string>
    </property>
   </action>
  </widget>

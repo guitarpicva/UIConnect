@@ -70,7 +70,9 @@ private slots:
 
     void on_useSAMECheckBox_stateChanged(int arg1);
 
-    private:
+    void on_actionSet_My_Position_Maidenhead_triggered();
+
+private:
     Ui::DirewolfConnect *ui;
     QMap<int, QList<float>> timeMap;
     QString build = __DATE__;

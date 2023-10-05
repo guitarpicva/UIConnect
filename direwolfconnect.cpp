@@ -1,4 +1,5 @@
 #include "direwolfconnect.h"
+#include "maidenhead.h"
 #include "ui_direwolfconnect.h"
 #include "uikissutils.h"
 
@@ -523,7 +524,7 @@ void DirewolfConnect::on_saveSettingsButton_clicked()
     saveSettings();
     if (!b_closingDown) {
         loadSettings();
-        on_action_Preferences_triggered(false);
+        //on_action_Preferences_triggered(false);
         connectToModem();
     }
 }
@@ -1046,5 +1047,25 @@ void DirewolfConnect::on_actionEnter_KISS_Mode_triggered()
 void DirewolfConnect::on_useSAMECheckBox_stateChanged(int arg1)
 {
     b_useSAME = arg1;
+}
+
+
+void DirewolfConnect::on_actionSet_My_Position_Maidenhead_triggered()
+{
+    QStringList position;
+    bool ok = false;
+    const QString maidenhead
+        = QInputDialog::getText(this,
+                                "Position from Maidenhead",
+                                "Enter the Maidenhead locator (4 or 6 char)",
+                                QLineEdit::Normal,
+                                "",
+                                &ok);
+    if (ok) {
+        QPair<double, double> loc = mh2ll(maidenhead.toStdString());
+        qDebug()<< maidenhead<<loc;
+        setWindowTitle(windowTitle().append(maidenhead));
+        qDebug()<<ll2ddm(loc);
+    }
 }
 
