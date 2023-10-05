@@ -8,7 +8,7 @@ static std::pair<double, double> mh2ll(const std::string mh)
 {
     double lon = 0.0;
     double lat = 0.0;
-    std::vector<u_int8_t> ba2;
+    std::vector<uint8_t> ba2;
     for(char c: mh) {
         ba2.push_back((uint8_t)c);
     }

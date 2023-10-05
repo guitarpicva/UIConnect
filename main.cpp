@@ -1,5 +1,5 @@
 #include "direwolfconnect.h"
-
+#include <QIcon>
 #include <QApplication>
 
 int main(int argc, char *argv[])
