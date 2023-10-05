@@ -1062,10 +1062,12 @@ void DirewolfConnect::on_actionSet_My_Position_Maidenhead_triggered()
                                 "",
                                 &ok);
     if (ok) {
-        QPair<double, double> loc = mh2ll(maidenhead.toStdString());
+        std::pair<double, double> stdloc(mh2ll(maidenhead.toStdString()));
+        QPair<double, double> loc = qMakePair(stdloc.first, stdloc.second);
         qDebug()<< maidenhead<<loc;
         setWindowTitle(windowTitle().append(maidenhead));
-        QPair<double, double> aprs = ll2aprs(loc);
+        std::pair<double, double> stdaprs(ll2aprs(stdloc));
+        QPair<double, double> aprs = qMakePair(stdaprs.first, stdaprs.second);
         s_aprsLat = QString::number(aprs.first);
         if(aprs.first > 0) {
             s_aprsLat += "N";
