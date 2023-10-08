@@ -439,7 +439,7 @@ QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QSt
 
 QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray kiss_in)
 {
-    qDebug()<<"in:"<<kiss_in;
+    qDebug()<<"kiss_in:"<<kiss_in;
     // Erase the KISS mode byte if necessary
     QByteArray in;
     if(kiss_in[0] == 0x00) {
@@ -448,6 +448,7 @@ QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray kiss_in)
     else {
         in = kiss_in;
     }
+    qDebug()<<"in:"<<in;
     //                                     opt   opt
     //                    dest,src,digi1,digi2,payload
     QByteArrayList out = {"", "", "", "", ""};
