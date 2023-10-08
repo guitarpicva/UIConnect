@@ -56,8 +56,8 @@ void DirewolfConnect::loadSettings()
     s_myPosition = s->value("myPosition", "").toStringList().join("/");
     ui->direwolfIPComboBox->clear();
     ui->modemSerialComboBox->clear();
-    ui->groupBox_3->setVisible(false);
-    ui->action_Preferences->setChecked(false);
+    ui->groupBox_3->setVisible(true);
+    ui->action_Preferences->setChecked(true);
     b_useKISSSocket = s->value("useKISSSocket", true).toBool();
     if (b_useKISSSocket) {
         ui->tcpKISSRadioButton->setChecked(true);
