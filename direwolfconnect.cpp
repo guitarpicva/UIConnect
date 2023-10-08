@@ -27,7 +27,8 @@ DirewolfConnect::DirewolfConnect(QWidget *parent)
     //UIKISSUtils ku;
     //qDebug() << "WRAP:" << ku.kissWrap("Hello World");
 //    const QString testframe = "00968a68908a94e08284689aae406103f041424344454647414243444546474142434445464741424344454647414243444546474142434445464741424344454647414243444546474142434445464741424344454647";
-//    UIKISSUtils::unwrapUIFrame(QByteArray::fromHex(testframe.toLatin1()));
+//    QByteArrayList bal = UIKISSUtils::unwrapUIFrame(QByteArray::fromHex(testframe.toLatin1()));
+//    qDebug()<<"unwrapUIFrame:"<<bal.at(0)<<bal.at(1)<<bal.at(4);
     // END TEST
     setWindowTitle("UI Connect - " % build % " NOT FOR RESALE Position: " % s_myPosition);
     timeMap.insert(75, QList<float>() << 0.1144 << 2.368);
@@ -241,6 +242,7 @@ void DirewolfConnect::processIncomingData()
     QString frame = UIKISSUtils::kissUnwrap(inBytes).toHex();
     inBytes.clear(); // ready the input buffer for the next frame
     qDebug() << "FRAME:" << frame;
+    qDebug()<<"unwrapUIFrame:"<<UIKISSUtils::unwrapUIFrame(frame.toLatin1());
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Hey, we might have multiple frames in there!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -328,7 +330,8 @@ void DirewolfConnect::processIncomingData()
         // print the data payload part
         ui->plainTextEdit->appendPlainText(printClean(QByteArray::fromHex(parts.at(1).toLatin1())));
     }
-    qDebug()<<"UIUnwrap:"<<UIKISSUtils::unwrapUIFrame(inBytes);
+    const QByteArrayList pieces = UIKISSUtils::unwrapUIFrame(parts.at(1).toLatin1());
+    qDebug()<<"unwrapUIFrame:"<<pieces[0]<<pieces[1]<<pieces[4];
     //    }
     //    else if (dws) {
     //        QDateTime now = QDateTime::currentDateTimeUtc();
