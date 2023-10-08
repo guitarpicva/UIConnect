@@ -437,13 +437,19 @@ QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QSt
     return out;
 }
 
-QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray in)
+QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray kiss_in)
 {
-    qDebug()<<"in:"<<in;
-    // Erase the KISS mode byte
-    in = in.mid(1);
-    //                                       opt   opt
-    //                      dest,src,digi1,digi2,payload
+    qDebug()<<"in:"<<kiss_in;
+    // Erase the KISS mode byte if necessary
+    QByteArray in;
+    if(kiss_in[0] == 0x00) {
+        in = kiss_in.mid(1);
+    }
+    else {
+        in = kiss_in;
+    }
+    //                                     opt   opt
+    //                    dest,src,digi1,digi2,payload
     QByteArrayList out = {"", "", "", "", ""};
     out.reserve(5);
     // extract the call signs and the payload and assign them as
@@ -459,7 +465,7 @@ QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray in)
     }
     b = (in[i] >> 1) & 0x0F;
     out[0].append('-');
-    out[0].append(b);
+    out[0].append(QString::number(b).toLatin1());
     //printf("[%02d] %d\n", i, b);
 
     // SOURCE
