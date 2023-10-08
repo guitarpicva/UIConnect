@@ -61,15 +61,10 @@ private slots:
     void on_actionTest_ACKMODE_triggered();
     void on_actionGet_Nino_TNC_Serial_triggered();
     void on_actionSet_My_Position_triggered();
-
     void on_tcpKISSRadioButton_clicked();
-
     void on_serialKISSRadioButton_clicked();
-
     void on_actionEnter_KISS_Mode_triggered();
-
     void on_useSAMECheckBox_stateChanged(int arg1);
-
     void on_actionSet_My_Position_Maidenhead_triggered();
 
 private:

@@ -323,8 +323,10 @@ void DirewolfConnect::processIncomingData()
         ui->plainTextEdit->appendHtml(BLUE % now.toString(timestamp) % parseAddresses(QByteArray::fromHex(parts.at(0).toLatin1()))
                                       % END_HTML);
         ui->plainTextEdit->appendPlainText(""); // clear color
+        // print the data payload part
         ui->plainTextEdit->appendPlainText(printClean(QByteArray::fromHex(parts.at(1).toLatin1())));
     }
+    qDebug()<<"UIUnwrap:"<<UIKISSUtils::unwrapUIFrame(inBytes);
     //    }
     //    else if (dws) {
     //        QDateTime now = QDateTime::currentDateTimeUtc();

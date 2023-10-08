@@ -502,7 +502,7 @@ QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray in)
                 //printf("[%02d] %c\n", i, (int) b);
                 i++;
             }
-            c = in[i] & 0x01;
+            //c = in[i] & 0x01;  // not needed for the last digi
             h = in[i] > (char)127;
             b = (in[i] >> 1) & 0x0F;
             out[3].append('-');
