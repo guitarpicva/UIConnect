@@ -1,5 +1,5 @@
 # UIConnect
-Qt5 AX.25 UI frame only chatting application
+Qt5/6 AX.25 UI frame only chatting application
 
 Linux users should install libraries:
 
@@ -7,7 +7,13 @@ Debian and derivatives:
 ````
 sudo apt install qtbase5-dev libqt5serialport5-dev qt5-qmake
 ````
-and there may be others...report on discord as you find needs please.
+AlpineLinux:
+````
+sudo apk add qt5-qtbase qt5-qtbase-dev qt5-qtserialport qt5-qtseriaport-dev
+````
+For Qt6 replace "5" with "6" above.
+
+There may be other packages...report in Issues as you find needs please.
 
 Other Linuxes you have to figure out the package names.
 
