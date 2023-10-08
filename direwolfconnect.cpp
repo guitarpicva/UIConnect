@@ -244,7 +244,7 @@ void DirewolfConnect::processIncomingData()
     QString frame = UIKISSUtils::kissUnwrap(inBytes).toHex();
     inBytes.clear(); // ready the input buffer for the next frame
     qDebug() << "FRAME:" << frame;
-    qDebug()<<"unwrapUIFrame:"<<UIKISSUtils::unwrapUIFrame(frame.toLatin1());
+    qDebug()<<"unwrapUIFrame:"<<UIKISSUtils::unwrapUIFrame(QByteArray::fromHex(frame.toLatin1()));
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Hey, we might have multiple frames in there!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
