@@ -642,7 +642,7 @@ void DirewolfConnect::on_actionTX_Tail_triggered()
                                          "Choose the value for TX Tail in milliseconds. (def. 0)",
                                          0,
                                          0,
-                                         240,
+                                         500,
                                          10,
                                          &ok);
     if (ok) {
