@@ -26,6 +26,8 @@ DirewolfConnect::DirewolfConnect(QWidget *parent)
     // TEST
     //UIKISSUtils ku;
     //qDebug() << "WRAP:" << ku.kissWrap("Hello World");
+//    const QString testframe = "00968a68908a94e08284689aae406103f041424344454647414243444546474142434445464741424344454647414243444546474142434445464741424344454647414243444546474142434445464741424344454647";
+//    UIKISSUtils::unwrapUIFrame(QByteArray::fromHex(testframe.toLatin1()));
     // END TEST
     setWindowTitle("UI Connect - " % build % " NOT FOR RESALE Position: " % s_myPosition);
     timeMap.insert(75, QList<float>() << 0.1144 << 2.368);

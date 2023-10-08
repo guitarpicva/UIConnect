@@ -439,16 +439,20 @@ QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QSt
 
 QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray in)
 {
-    //                                            opt   opt    opt
-    QByteArrayList out; // dest,src,digi1,digi2,digi3,payload
-    out.reserve(6);
+    qDebug()<<"in:"<<in;
+    // Erase the KISS mode byte
+    in = in.mid(1);
+    //                                       opt   opt
+    //                      dest,src,digi1,digi2,payload
+    QByteArrayList out = {"", "", "", "", ""};
+    out.reserve(5);
     // extract the call signs and the payload and assign them as
-    // [0]=dest, [1]=source, [2]=digi1, [3]=digi2, [4]=digi3, [5]=payload
+    // [0]=dest, [1]=source, [2]=digi1, [3]=digi2, [4]=payload
     char b;
     int i = 0, end = 6;
     // DEST
     while (i < end) {
-        b = in[i] >> 1;
+        b = (in[i] >> 1) & 0x7F;
         //printf("[%02d] %c\n", i, (int) b);
         out[0].append(b);
         i++;
@@ -462,7 +466,7 @@ QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray in)
     i++;
     end = i + 6;
     while (i < end) {
-        b = in[i] >> 1;
+        b = (in[i] >> 1) & 0x7F;
         out[1].append(b);
         //printf("[%02d] %c\n", i, (int) b);
         i++;
@@ -509,22 +513,22 @@ QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray in)
             out[3].append(QString::number(b).toLatin1());
             if(h) out[3].append('*');
             //printf("[%02d] %d\n", i, b);
-            if(c == 0x00) { // one more detail "digi"?
-                i++;
-                end = i + 6;
-                while (i < end) {
-                    b = in[i] >> 1;
-                    out[4].append(b);
-                    //printf("[%02d] %c\n", i, (int) b);
-                    i++;
-                }
-                c = in[i] & 0x01;
-                h = in[i] > (char)127;
-                b = (in[i] >> 1) & 0x0F;
-                out[4].append('-');
-                out[4].append(QString::number(b).toLatin1());
-                if(h) out[4].append('*');
-            }
+//            if(c == 0x00) { // one more detail "digi"?
+//                i++;
+//                end = i + 6;
+//                while (i < end) {
+//                    b = in[i] >> 1;
+//                    out[4].append(b);
+//                    //printf("[%02d] %c\n", i, (int) b);
+//                    i++;
+//                }
+//                c = in[i] & 0x01;
+//                h = in[i] > (char)127;
+//                b = (in[i] >> 1) & 0x0F;
+//                out[4].append('-');
+//                out[4].append(QString::number(b).toLatin1());
+//                if(h) out[4].append('*');
+//            }
         }
     }
 
@@ -532,7 +536,7 @@ QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray in)
     end = in.length();
     // The payload is all the rest
     while(i < end) {
-        out[5].append(in[i]);
+        out[4].append(in[i]);
         i++;
     }
 
