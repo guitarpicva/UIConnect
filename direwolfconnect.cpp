@@ -26,9 +26,11 @@ DirewolfConnect::DirewolfConnect(QWidget *parent)
     // TEST
     //UIKISSUtils ku;
     //qDebug() << "WRAP:" << ku.kissWrap("Hello World");
-//    const QString testframe = "00968a68908a94e08284689aae406103f041424344454647414243444546474142434445464741424344454647414243444546474142434445464741424344454647414243444546474142434445464741424344454647";
+    //const QString testframe = "00968a68908a94e08284689aae406103f041424344454647414243444546474142434445464741424344454647414243444546474142434445464741424344454647414243444546474142434445464741424344454647";
 //    QByteArrayList bal = UIKISSUtils::unwrapUIFrame(QByteArray::fromHex(testframe.toLatin1()));
 //    qDebug()<<"unwrapUIFrame:"<<bal.at(0)<<bal.at(1)<<bal.at(4);
+    //inBytes = testframe.toLatin1();
+    //processIncomingData();
     // END TEST
     setWindowTitle("UI Connect - " % build % " NOT FOR RESALE Position: " % s_myPosition);
     timeMap.insert(75, QList<float>() << 0.1144 << 2.368);
@@ -330,8 +332,7 @@ void DirewolfConnect::processIncomingData()
         // print the data payload part
         ui->plainTextEdit->appendPlainText(printClean(QByteArray::fromHex(parts.at(1).toLatin1())));
     }
-    const QByteArrayList pieces = UIKISSUtils::unwrapUIFrame(parts.at(1).toLatin1());
-    qDebug()<<"unwrapUIFrame:"<<pieces[0]<<pieces[1]<<pieces[4];
+
     //    }
     //    else if (dws) {
     //        QDateTime now = QDateTime::currentDateTimeUtc();

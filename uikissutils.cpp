@@ -451,7 +451,6 @@ QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray kiss_in)
     //                                     opt   opt
     //                    dest,src,digi1,digi2,payload
     QByteArrayList out = {"", "", "", "", ""};
-    out.reserve(5);
     // extract the call signs and the payload and assign them as
     // [0]=dest, [1]=source, [2]=digi1, [3]=digi2, [4]=payload
     char b;
@@ -518,23 +517,6 @@ QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray kiss_in)
             out[3].append('-');
             out[3].append(QString::number(b).toLatin1());
             if(h) out[3].append('*');
-            //printf("[%02d] %d\n", i, b);
-//            if(c == 0x00) { // one more detail "digi"?
-//                i++;
-//                end = i + 6;
-//                while (i < end) {
-//                    b = in[i] >> 1;
-//                    out[4].append(b);
-//                    //printf("[%02d] %c\n", i, (int) b);
-//                    i++;
-//                }
-//                c = in[i] & 0x01;
-//                h = in[i] > (char)127;
-//                b = (in[i] >> 1) & 0x0F;
-//                out[4].append('-');
-//                out[4].append(QString::number(b).toLatin1());
-//                if(h) out[4].append('*');
-//            }
         }
     }
 
@@ -545,8 +527,6 @@ QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray kiss_in)
         out[4].append(in[i]);
         i++;
     }
-
-    //printf("%s>%s,%s,%s,%s\n%s\n", out[1].c_str(), out[0].c_str(), out[2].c_str(), out[3].c_str(), out[4].c_str(), out[5].c_str());
 
     return out;
 }
