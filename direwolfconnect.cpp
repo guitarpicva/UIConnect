@@ -238,7 +238,7 @@ void DirewolfConnect::processIncomingData()
     timeoutTimer->stop(); // restarted by the kiss port sending more data
     QString frame = UIKISSUtils::kissUnwrap(inBytes).toHex();
     inBytes.clear(); // ready the input buffer for the next frame
-    //qDebug() << "FRAME:" << frame;
+    qDebug() << "FRAME:" << frame;
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Hey, we might have multiple frames in there!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
