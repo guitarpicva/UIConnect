@@ -1122,6 +1122,6 @@ void DirewolfConnect::on_actionReset_MMDVM_Pi_GPIO_triggered()
         gpiod_line_set_value(line, 0);
         QTimer::singleShot(250, this, [=]{qDebug()<<"Set pin 40 low";gpiod_line_set_value(line, 1);});
     }
-    on_connectButton_clicked();
+    QTimer::singleShot(1000, this, [=]{on_connectButton_clicked();});
 }
 
