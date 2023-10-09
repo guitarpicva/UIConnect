@@ -52,6 +52,12 @@ DirewolfConnect::~DirewolfConnect()
 
 void DirewolfConnect::closeEvent(QCloseEvent *event)
 {
+    if(line) {
+        gpiod_line_release(line);
+    }
+    if(chip) {
+        gpiod_chip_close(chip);
+    }
     b_closingDown = true; // so save doesn't try to reload and re-connect
     if (dw)
         disconnect(dw, 0, 0, 0); // avoid the noid
