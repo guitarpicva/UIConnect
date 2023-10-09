@@ -278,11 +278,13 @@ void DirewolfConnect::processIncomingData()
 
         if (pieces.size() > 5) // scan for rIoT commands which may also require a response
         {
+            qDebug()<<"rIoT command processing...";
             const QString dest = pieces.at(0);
             const QString source = pieces.at(2);
             addDestCallsign(source);                                      // add the incoming source call signs to our dest list
             bool forMe = ui->sourceCallSignComboBox->findText(dest) > -1; // this call sign is in my source list
             if (!forMe) {
+                qDebug()<<"Not for me!";
                 //ui->plainTextEdit->appendPlainText("This message doesn't seem to be for me..." + source);
                 return;
             }
