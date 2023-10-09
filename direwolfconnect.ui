@@ -510,6 +510,7 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
     <addaction name="actionSend_Text_Line_By_Line"/>
     <addaction name="actionSet_My_Position"/>
     <addaction name="actionSet_My_Position_Maidenhead"/>
+    <addaction name="actionReset_MMDVM_Pi_GPIO"/>
    </widget>
    <widget class="QMenu" name="menu_KISS_Commands">
     <property name="title">
@@ -696,6 +697,11 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
   <action name="actionSet_My_Position_Maidenhead">
    <property name="text">
     <string>Set My Position Maidenhead</string>
+   </property>
+  </action>
+  <action name="actionReset_MMDVM_Pi_GPIO">
+   <property name="text">
+    <string>Reset MMDVM Pi GPIO</string>
    </property>
   </action>
  </widget>

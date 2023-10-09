@@ -1,6 +1,9 @@
 #ifndef DIREWOLFCONNECT_H
 #define DIREWOLFCONNECT_H
 
+#define GPIO21 21u
+#include "gpiod.hpp"
+
 #include <QMainWindow>
 #include <QSerialPort>
 #include <QSettings>
@@ -67,8 +70,12 @@ private slots:
     void on_useSAMECheckBox_stateChanged(int arg1);
     void on_actionSet_My_Position_Maidenhead_triggered();
 
+    void on_actionReset_MMDVM_Pi_GPIO_triggered();
+
 private:
     Ui::DirewolfConnect *ui;
+    struct gpiod_chip *chip;
+    struct gpiod_line *line;
     QMap<int, QList<float>> timeMap;
     QString build = __DATE__;
     QTcpSocket *dw = nullptr;

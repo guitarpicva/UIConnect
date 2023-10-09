@@ -18,6 +18,12 @@ DirewolfConnect::DirewolfConnect(QWidget *parent)
 {
     ui->setupUi(this);
     loadSettings();
+    chip = gpiod_chip_open_by_name("gpiochip0");
+    if(chip) {
+        line = gpiod_chip_get_line(chip, GPIO21);
+        gpiod_line_request_output(line, "reset", 0);
+        gpiod_line_set_value(line, 0);
+    }
     sendTimer = new QTimer(this);
     timeoutTimer = new QTimer(this);
     timeoutTimer->setInterval(i_serialPortTimeout);
@@ -1100,6 +1106,14 @@ void DirewolfConnect::on_actionSet_My_Position_Maidenhead_triggered()
             }
         qDebug()<<"APRS:"<<s_aprsLat<<"/"<<s_aprsLon;
         statusBar()->showMessage("APRS: " + s_aprsLat + "/" + s_aprsLon);
+    }
+}
+
+void DirewolfConnect::on_actionReset_MMDVM_Pi_GPIO_triggered()
+{
+    if(line) {
+        gpiod_line_set_value(line, 1);
+        QTimer::singleShot(100, this, [=]{gpiod_line_set_value(line, 0);});
     }
 }
 
