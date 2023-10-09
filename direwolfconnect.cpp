@@ -23,6 +23,7 @@ DirewolfConnect::DirewolfConnect(QWidget *parent)
         line = gpiod_chip_get_line(chip, GPIO21);
         qDebug()<<"Get Line:"<<gpiod_line_request_output(line, "reset", 0);
 //        gpiod_line_set_value(line, 0);
+        on_actionReset_MMDVM_Pi_GPIO_triggered();
     }
     sendTimer = new QTimer(this);
     timeoutTimer = new QTimer(this);
