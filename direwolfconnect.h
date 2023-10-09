@@ -113,7 +113,7 @@ private:
     QByteArray parseAddresses(const QByteArray in);
     QByteArray printClean(QByteArray in);
     float getTransmissionTime(const int baud, int byteCount);
-    QString do_textSubstitutions(QString msgtext);
+    QString do_textSubstitutions(const QString msgtext);
     void addSourceCallsign(const QString source);
     void addDestCallsign(const QString dest);
 };

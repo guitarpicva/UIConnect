@@ -400,60 +400,38 @@ QByteArray DirewolfConnect::printClean(QByteArray in)
     return out;
 }
 
-QString DirewolfConnect::do_textSubstitutions(QString msgtext)
+QString DirewolfConnect::do_textSubstitutions(const QString msgtext)
 {
-    if (msgtext.contains("{POS}")) {
-        msgtext.replace("{POS}", s_myPosition);
+    QString out = msgtext;
+    if (out.contains("{POS}")) {
+        out.replace("{POS}", s_myPosition);
     }
-    if (msgtext.contains("{APRSPOS}")) {
-        msgtext.replace("{APRSPOS}", s_aprsLat + "/" + s_aprsLon);
+    if (out.contains("{APRSPOS}")) {
+        out.replace("{APRSPOS}", s_aprsLat + "/" + s_aprsLon);
     }
-    if (msgtext.contains("{CS}")) {
-        msgtext.replace("{CS}", ui->sourceCallSignComboBox->currentText().trimmed().toUpper());
+    if (out.contains("{CS}")) {
+        out.replace("{CS}", ui->sourceCallSignComboBox->currentText().trimmed().toUpper());
     }
-    return msgtext;
+    return out;
 }
 
 void DirewolfConnect::on_sendNowButton_clicked()
 {
     QByteArray msgtext;
-    QString toSend = ui->plainTextEdit_2->textCursor().selectedText().toLatin1();
-    if (toSend.isEmpty()) {
+    const QString toSend = ui->plainTextEdit_2->textCursor().selectedText().toLatin1();
+    if (toSend.isEmpty()) { // there was no selected text!!
         //    QDateTime now = QDateTime::currentDateTimeUtc();
         msgtext = do_textSubstitutions(ui->plainTextEdit_2->toPlainText().trimmed()).toLatin1();
     }
     else {
         msgtext = do_textSubstitutions(toSend).toLatin1();
     }    
-    sendMessage(msgtext);
-    //    QByteArray out;
-    //    if (!b_sendIL2P) {
-    //        const QString source = ui->sourceCallSignComboBox->currentText().trimmed().toUpper();
-    //        const QString dest = ui->destCallSignComboBox->currentText().trimmed().toUpper();
-    //        //msgtext.prepend(dest % " DE " % source % "~");
-    //        const QString digi1 = ui->digiOneComboBox->currentText().trimmed().toUpper();
-    //        const QString digi2 = ui->digiTwoComboBox->currentText().trimmed().toUpper();
-    //        out = UIKISSUtils::buildUIFrame(dest, source, digi1, digi2, msgtext.mid(0, 256));
-    //    }
-    //    else {
-    //        // IL2P frame data size max is 1023
-    //        out = msgtext.mid(0, 1023).toLatin1();
-    //    }
-    //    ui->plainTextEdit->appendHtml(GREEN % now.toString(timestamp) % "SENDING: " % msgtext % END_HTML);
-    //    if (b_useKISSSocket) {
-    //        //qDebug().noquote() << "send:" << out.toHex() << UIKISSUtils::kissWrap(out).toHex();
-    //        dw->write(UIKISSUtils::kissWrap(out));
-    //        dw->flush();
-    //    }
-    //    else if (dws) {
-    //        dws->write(UIKISSUtils::kissWrap(out));
-    //        dws->flush();
-    //    }
+    sendMessage(msgtext);    
 }
 
 void DirewolfConnect::addSourceCallsign(const QString source)
 {
-    qDebug() << "Add source call sign" << source;
+    //qDebug() << "Add source call sign" << source;
     if (source.isEmpty())
         return;
     QStringList vals = s->value("sourceCallSign", "").toStringList();
@@ -467,7 +445,7 @@ void DirewolfConnect::addSourceCallsign(const QString source)
 
 void DirewolfConnect::addDestCallsign(const QString dest)
 {
-    qDebug() << "Add dest call sign" << dest;
+    //qDebug() << "Add dest call sign" << dest;
     if (dest.isEmpty())
         return;
     QStringList vals = s->value("destCallSign", "").toStringList();
@@ -481,13 +459,13 @@ void DirewolfConnect::addDestCallsign(const QString dest)
 
 void DirewolfConnect::sendMessage(const QByteArray msgtext)
 {
-    QDateTime now = QDateTime::currentDateTimeUtc();
+    const QDateTime now = QDateTime::currentDateTimeUtc();
     QByteArray out;
     const QString source = ui->sourceCallSignComboBox->currentText().trimmed().toUpper();
     const QString dest = ui->destCallSignComboBox->currentText().trimmed().toUpper();
     addSourceCallsign(source);
     addDestCallsign(dest);
-    if (!b_sendIL2P) {
+    if (!b_sendIL2P) { // using ax.25 framing
         //msgtext.prepend(dest % " DE " % source % "~");
         if (dest.isEmpty())
             return;
@@ -501,7 +479,7 @@ void DirewolfConnect::sendMessage(const QByteArray msgtext)
         out = QByteArray::fromHex("ABABABABABABABABABABABABABABAB");
         out.append(msgtext);
     }
-    else {
+    else { // no ax.25 framing
         // IL2P frame data size max is 1023, but in Robust mode only 512
         // THIS IS BRUTE FORCE and should be managed better
         out = msgtext.mid(0, 512);
@@ -1088,7 +1066,7 @@ void DirewolfConnect::on_actionSet_My_Position_Maidenhead_triggered()
     if (ok) {
         std::pair<double, double> stdloc(mh2ll(maidenhead.toStdString()));
         QPair<double, double> loc = qMakePair(stdloc.first, stdloc.second);
-        qDebug()<< maidenhead<<loc;
+        //qDebug()<< maidenhead<<loc;
         setWindowTitle(windowTitle().append(maidenhead));
         std::pair<double, double> stdaprs(ll2aprs(stdloc));
         QPair<double, double> aprs = qMakePair(stdaprs.first, stdaprs.second);
@@ -1110,7 +1088,7 @@ void DirewolfConnect::on_actionSet_My_Position_Maidenhead_triggered()
         while(s_aprsLon.length() < 9) {
                 s_aprsLon.prepend('0');
             }
-        qDebug()<<"APRS:"<<s_aprsLat<<"/"<<s_aprsLon;
+        //qDebug()<<"APRS:"<<s_aprsLat<<"/"<<s_aprsLon;
         statusBar()->showMessage("APRS: " + s_aprsLat + "/" + s_aprsLon);
     }
 }
@@ -1118,10 +1096,13 @@ void DirewolfConnect::on_actionSet_My_Position_Maidenhead_triggered()
 void DirewolfConnect::on_actionReset_MMDVM_Pi_GPIO_triggered()
 {
     if(line) {
-        qDebug()<<"Set pin 40 high";
+        // Set pin 40 low, then high to reset the MMDVM Pi board;
         gpiod_line_set_value(line, 0);
-        QTimer::singleShot(250, this, [=]{qDebug()<<"Set pin 40 low";gpiod_line_set_value(line, 1);});
+        QTimer::singleShot(250, this, [=]{gpiod_line_set_value(line, 1);});
     }
-    QTimer::singleShot(1000, this, [=]{on_connectButton_clicked();});
+    // then reconnect to the serial port since the connection would have
+    // been dropped by the board restarting.  this can be done without
+    // harm even if the test above fails.
+    QTimer::singleShot(6000, this, [=]{on_connectButton_clicked();});
 }
 
