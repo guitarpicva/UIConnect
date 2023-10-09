@@ -318,7 +318,7 @@ void DirewolfConnect::processIncomingData()
                 qDebug() << "Function 5 received!";
                 ui->plainTextEdit->appendPlainText("PING Request from : " + source);
                 // reply to a PING request as a 6 (PONG) "dest/6/source/0/0/0"
-                QTimer::singleShot(1000, this, [=] {
+                QTimer::singleShot(1500, this, [=] {
                     sendMessage(source.toLatin1() + "/6/" + dest.toLatin1() + "/" + QString::number(callback).toLatin1() + "/0/0");
                 });
                 break;
@@ -575,11 +575,12 @@ void DirewolfConnect::sendIteration()
 void DirewolfConnect::on_actionTXDELAY_triggered()
 {
     bool ok = false;
-    const int val
-        = QInputDialog::getInt(this, "Set TX Delay Value", "Choose the value for TX Delay in milliseconds.", 10, 10, 300, 10, &ok);
+    int val
+        = QInputDialog::getInt(this, "Set TX Delay Value", "Choose the value for TX Delay in milliseconds.", 10, 10, 500, 10, &ok);
     if (ok) {
-        const QByteArray cmd = UIKISSUtils::kissWrapCommand(QByteArray::fromHex(QString::number(val / 10).toLatin1()), 1);
-        //qDebug() << "Command:" << cmd;
+        val /= 10;
+        const QByteArray cmd = UIKISSUtils::kissWrapCommand(QByteArray::fromHex(QString::number(val, 16).toLatin1()), 1);
+        qDebug() << "TXDELAY:" << cmd.toHex();
         if (dw) {
             dw->write(cmd);
             dw->flush();
@@ -647,8 +648,8 @@ void DirewolfConnect::on_actionTX_Tail_triggered()
                                          10,
                                          &ok);
     if (ok) {
-        const QByteArray cmd = UIKISSUtils::kissWrapCommand(QByteArray::fromHex(QString::number(val / 10).toLatin1()), 4);
-        //qDebug() << "Command:" << cmd;
+        const QByteArray cmd = UIKISSUtils::kissWrapCommand(QByteArray::fromHex(QString::number(val / 10, 16).toLatin1()), 4);
+        qDebug() << "TXTAIL:" << cmd;
         if (dw) {
             dw->write(cmd);
             dw->flush();
