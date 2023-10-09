@@ -21,7 +21,7 @@ DirewolfConnect::DirewolfConnect(QWidget *parent)
     chip = gpiod_chip_open_by_name("gpiochip0");
     if(chip) {
         line = gpiod_chip_get_line(chip, GPIO21);
-        gpiod_line_request_output(line, "reset", 0);
+        qDebug()<<"Get Line:"<<gpiod_line_request_output(line, "reset", 0);
 //        gpiod_line_set_value(line, 0);
     }
     sendTimer = new QTimer(this);
