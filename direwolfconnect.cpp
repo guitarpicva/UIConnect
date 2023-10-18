@@ -580,7 +580,7 @@ void DirewolfConnect::on_actionTXDELAY_triggered()
     if (ok) {
         val /= 10;
         const QByteArray cmd = UIKISSUtils::kissWrapCommand(QByteArray::fromHex(QString::number(val, 16).toLatin1()), 1);
-        qDebug() << "TXDELAY:" << cmd.toHex();
+        qDebug() << "TXDELAY:" << cmd;
         if (dw) {
             dw->write(cmd);
             dw->flush();
