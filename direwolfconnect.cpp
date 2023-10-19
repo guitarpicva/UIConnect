@@ -576,7 +576,7 @@ void DirewolfConnect::on_actionTXDELAY_triggered()
 {
     bool ok = false;
     int val
-        = QInputDialog::getInt(this, "Set TX Delay Value", "Choose the value for TX Delay in milliseconds.", 10, 10, 500, 10, &ok);
+        = QInputDialog::getInt(this, "Set TX Delay Value", "Choose the value for TX Delay in milliseconds.", 300, 10, 500, 10, &ok);
     if (ok) {
         val /= 10;
         const QByteArray cmd = UIKISSUtils::kissWrapCommand(QByteArray::fromHex(QString::number(val, 16).toLatin1()), 1);
@@ -642,7 +642,7 @@ void DirewolfConnect::on_actionTX_Tail_triggered()
     const int val = QInputDialog::getInt(this,
                                          "Set TX Tail Value",
                                          "Choose the value for TX Tail in milliseconds. (def. 0)",
-                                         0,
+                                         40,
                                          0,
                                          500,
                                          10,
