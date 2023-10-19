@@ -599,7 +599,7 @@ void DirewolfConnect::on_actionP_Persistence_triggered()
         = QInputDialog::getInt(this, "Set Persistence Value", "Choose the value for Persistence (def. 63).", 63, 0, 255, 1, &ok);
     if (ok) {
         const QByteArray cmd = UIKISSUtils::kissWrapCommand(QByteArray::fromHex(QString::number(val).toLatin1()), 2);
-        //qDebug() << "Command:" << cmd;
+        qDebug() << "Command:" << cmd;
         if (dw) {
             dw->write(cmd);
             dw->flush();
