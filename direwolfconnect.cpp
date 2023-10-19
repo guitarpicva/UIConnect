@@ -560,7 +560,9 @@ void DirewolfConnect::on_actionSend_Numbered_Group_triggered()
 
 void DirewolfConnect::sendIteration()
 {
-    const QByteArray sendData = iterationBytes + " - " + QString::number(iterator).toLatin1();
+    QString iter = QString::number(iterator);
+    if(iter.length() < 2) { iter.prepend("0"); }
+    const QByteArray sendData = iterationBytes + " - " + iter.toLatin1();
     ui->plainTextEdit_2->setPlainText(sendData);
     on_sendNowButton_clicked();
     iterator++;
