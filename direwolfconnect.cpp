@@ -553,7 +553,7 @@ void DirewolfConnect::on_actionSend_Numbered_Group_triggered()
         disconnect(sendTimer, 0, 0, 0);
         connect(sendTimer, &QTimer::timeout, this, &DirewolfConnect::sendIteration);
         //sendTimer->start(secs * 1000); // will kick sendIteration();
-        sendTimer->start(4000);        // any reasonable delay will work
+        sendTimer->start(1000);        // any reasonable delay will work
         sendIteration();               // crank the first one now
     }
 }
