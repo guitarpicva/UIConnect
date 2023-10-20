@@ -240,7 +240,7 @@ QByteArray UIKISSUtils::kissUnwrap(const QByteArray in)
     return out;
 }
 
-QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QString digi1, QString digi2, QByteArray data)
+QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QString digi1, QString digi2, QByteArray data, bool setReplyBit)
 {
     /* ax.25 UI frame has 7 chars for dest, 7 chars for source, 7 chars for
     * digi, (7 chars for a second digi) one byte for frame type of UI (03), and one byte for PID (f0)
@@ -252,7 +252,7 @@ QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QSt
     if (!hasNoDigi2) // if false, double-check the second one
         hasNoDigi2 = digi2.trimmed().isEmpty();
 
-    QByteArray out; // outpub buffer
+    QByteArray out; // output buffer
     // Destination call sign SSID evaluation
     int D_SSID = 0;
     QStringList parts = dest_call.split("-");
@@ -309,12 +309,12 @@ QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QSt
             out.append((uchar) 0x61);
         }
         else {
-            // Dest 0000 SSID char with Control bit set
+            // Source 0000 SSID char with Control bit unset
             out.append((uchar) 0x60);
         }
     }
     else {
-        // build the SSID into the Dest Address field
+        // build the SSID into the Source Address field
         uchar val = (uchar) D_SSID;
         //qDebug() << "OTHER SSID:" << QString::number(val, 2);
         val = val << 1; // move the SSID left one bit
@@ -351,7 +351,7 @@ QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QSt
         }
         //qDebug() << "DIGI:" << msg << "D_SSID" << D_SSID;
 
-        // no SSID in the address so encode 0x61
+        // no SSID in the address so encode 0x61 unless second digi
         if (D_SSID == 0) {
             if (hasNoDigi2)
                 out.append((uchar) 0x61);
@@ -427,7 +427,8 @@ QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QSt
     // Now encode the payload text
     // Control field
     // PID = 0x03, no layer 3
-    out.append((uchar) 0x03);
+    if(setReplyBit) { out.append((uchar) 0x03); }
+    else { out.append((uchar) 0x13); }
     out.append((uchar) 0xf0);
     msg = data.mid(0, 256); // limit to 256 bytes
     for (int i = 0; i < msg.length(); i++) {

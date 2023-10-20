@@ -72,6 +72,8 @@ private slots:
 
     void on_actionReset_MMDVM_Pi_GPIO_triggered();
 
+    void on_actionSet_Reply_Bit_in_UI_Frames_triggered(bool checked);
+
 private:
     Ui::DirewolfConnect *ui;
     struct gpiod_chip *chip;
@@ -101,6 +103,7 @@ private:
     int iteratorMax = 0;
     int i_otaBaudRate = 700;
     bool b_useSAME = false;
+    bool b_useReplyBit = false;
     bool b_useKISSSocket = true;
     bool b_sendIL2P = true;
     bool b_closingDown = false;

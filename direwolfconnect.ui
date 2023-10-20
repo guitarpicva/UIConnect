@@ -530,6 +530,7 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
     <addaction name="actionGet_Nino_TNC_Firmware_Version"/>
     <addaction name="actionDirewolf_TNC"/>
     <addaction name="actionTest_ACKMODE"/>
+    <addaction name="actionSet_Reply_Bit_in_UI_Frames"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
@@ -702,6 +703,14 @@ QGroupBox{border:1px groove #272727;background-color:#222;color:lightblue;}</str
   <action name="actionReset_MMDVM_Pi_GPIO">
    <property name="text">
     <string>Reset MMDVM Pi GPIO</string>
+   </property>
+  </action>
+  <action name="actionSet_Reply_Bit_in_UI_Frames">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Set Reply Bit in UI Frames</string>
    </property>
   </action>
  </widget>

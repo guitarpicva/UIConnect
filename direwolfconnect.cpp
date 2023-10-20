@@ -476,7 +476,8 @@ void DirewolfConnect::sendMessage(const QByteArray msgtext)
             return;
         const QString digi1 = ui->digiOneComboBox->currentText().trimmed().toUpper();
         const QString digi2 = ui->digiTwoComboBox->currentText().trimmed().toUpper();
-        out = UIKISSUtils::buildUIFrame(dest, source, digi1, digi2, msgtext.mid(0, 256));
+        out = UIKISSUtils::buildUIFrame(dest, source, digi1, digi2, msgtext.mid(0, 256), b_useReplyBit);
+        qDebug()<<"UI frame:"<<out.toHex();
     }
     else if(b_useSAME) {
         out = QByteArray::fromHex("ABABABABABABABABABABABABABABAB");
@@ -499,7 +500,7 @@ void DirewolfConnect::sendMessage(const QByteArray msgtext)
         dws->write(UIKISSUtils::kissWrap(out));
         dws->flush();
     }
-    //qDebug()<<"UI frame:"<<out<<out.toHex();
+    //qDebug()<<"UI frame:"<<out.toHex();
 }
 
 void DirewolfConnect::on_il2pCheckBox_clicked(bool checked)
@@ -1110,5 +1111,10 @@ void DirewolfConnect::on_actionReset_MMDVM_Pi_GPIO_triggered()
     // been dropped by the board restarting.  this can be done without
     // harm even if the test above fails.
     QTimer::singleShot(6000, this, [=]{on_connectButton_clicked();});
+}
+
+void DirewolfConnect::on_actionSet_Reply_Bit_in_UI_Frames_triggered(bool checked)
+{
+    b_useReplyBit = checked;
 }
 

@@ -32,7 +32,7 @@ public:
     static QByteArray kissWrap(const QByteArray in);
     static QByteArray kissWrapCommand(const QByteArray val, const int cmdCode);
     static QByteArray kissUnwrap(const QByteArray in);
-    static QByteArray buildUIFrame(QString dest_call, QString source_call, QString digi1 = QString(), QString digi2 = QString(), QByteArray data = QByteArray());
+    static QByteArray buildUIFrame(QString dest_call, QString source_call, QString digi1 = QString(), QString digi2 = QString(), QByteArray data = QByteArray(), bool setReplyBit = false);
     static QByteArrayList unwrapUIFrame(QByteArray kiss_in);
 signals:
 };
