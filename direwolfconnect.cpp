@@ -477,7 +477,7 @@ void DirewolfConnect::sendMessage(const QByteArray msgtext)
         const QString digi1 = ui->digiOneComboBox->currentText().trimmed().toUpper();
         const QString digi2 = ui->digiTwoComboBox->currentText().trimmed().toUpper();
         out = UIKISSUtils::buildUIFrame(dest, source, digi1, digi2, msgtext.mid(0, 256), b_useReplyBit);
-        qDebug()<<"UI frame:"<<out.toHex();
+        qDebug()<<"UI frame:"<<b_useReplyBit<<out.toHex();
     }
     else if(b_useSAME) {
         out = QByteArray::fromHex("ABABABABABABABABABABABABABABAB");

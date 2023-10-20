@@ -427,8 +427,8 @@ QByteArray UIKISSUtils::buildUIFrame(QString dest_call, QString source_call, QSt
     // Now encode the payload text
     // Control field
     // PID = 0x03, no layer 3
-    if(setReplyBit) { out.append((uchar) 0x03); }
-    else { out.append((uchar) 0x13); }
+    if(setReplyBit) { out.append((uchar) 0x13); }
+    else { out.append((uchar) 0x03); }
     out.append((uchar) 0xf0);
     msg = data.mid(0, 256); // limit to 256 bytes
     for (int i = 0; i < msg.length(); i++) {
