@@ -521,8 +521,9 @@ QByteArrayList UIKISSUtils::unwrapUIFrame(QByteArray kiss_in)
             if(h) out[3].append('*');
         }
     }
+    if(in[i + 1] == 19u) {qDebug()<<"P bit set!";}
+    i+=3; // skip past the previously read SSID byte and the 0x03/0x13 0xF0 Control and PID bytes
 
-    i+=3; // skip past the previously read SSID byte and the 0x03 0xF0 Control and PID bytes
     end = in.length();
     // The payload is all the rest
     while(i < end) {
