@@ -263,7 +263,7 @@ void DirewolfConnect::processIncomingData()
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     const QDateTime now = QDateTime::currentDateTimeUtc();
-    const QStringList parts = frame.split("03f0");
+    const QStringList parts = frame.contains("03f0")?frame.split("03f0"):frame.split("13f0");
     qDebug() << "Parts:" << parts.size() << parts;
     //<< parts;
     if (parts.size() < 2) { // not an AX.25 frame so eval the whole blob after the "00" Data block byte from KISS
