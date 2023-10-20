@@ -40,10 +40,10 @@ DirewolfConnect::DirewolfConnect(QWidget *parent)
     //processIncomingData();
     // END TEST
     setWindowTitle("UI Connect - " % build % " NOT FOR RESALE Position: " % s_myPosition);
-    timeMap.insert(75, QList<float>() << 0.1144 << 2.368);
-    timeMap.insert(150, QList<float>() << 0.0572 << 1.184);
-    timeMap.insert(300, QList<float>() << 0.0286 << .907);
-    timeMap.insert(600, QList<float>() << 0.0143 << .454);
+//    timeMap.insert(75, QList<float>() << 0.1144 << 2.368);
+//    timeMap.insert(150, QList<float>() << 0.0572 << 1.184);
+//    timeMap.insert(300, QList<float>() << 0.0286 << .907);
+//    timeMap.insert(600, QList<float>() << 0.0143 << .454);
 }
 
 DirewolfConnect::~DirewolfConnect()
