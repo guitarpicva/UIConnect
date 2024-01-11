@@ -5,11 +5,11 @@ Linux users should install libraries:
 
 Debian and derivatives:
 ````
-sudo apt install qtbase5-dev libqt5serialport5-dev qt5-qmake
+sudo apt install qtbase5-dev libqt5serialport5-dev qt5-qmake libgpiod-dev
 ````
 AlpineLinux:
 ````
-sudo apk add qt5-qtbase qt5-qtbase-dev qt5-qtserialport qt5-qtseriaport-dev
+sudo apk add qt5-qtbase qt5-qtbase-dev qt5-qtserialport qt5-qtseriaport-dev libgpiod-dev
 ````
 For Qt6 replace "5" with "6" above.
 
